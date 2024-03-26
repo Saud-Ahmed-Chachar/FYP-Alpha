@@ -1,0 +1,42 @@
+.custom-card {
+  height: 100%;
+  padding: 15px;
+  margin-bottom: 200px; /* Add margin bottom to separate cards */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-container {
+  width: 200px; /* Set a fixed width for the circular container */
+  height: 250px; /* Adjust height as needed */
+  overflow: hidden;
+  border-radius: 50%; /* Make the container round */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-left: auto; /* Center the container horizontally */
+  margin-right: auto; /* Center the container horizontally */
+}
+
+.card-img {
+  width: 100%; /* Adjust image size */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+}
+
+.custom-card .card-body {
+  padding-bottom: 0;
+}
+
+.custom-card .card-title,
+.custom-card .card-text {
+  margin-bottom: 0;
+}
+
+.details-button {
+  width: 100%;
+}

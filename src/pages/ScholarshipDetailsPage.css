@@ -1,0 +1,22 @@
+.scholarship-info {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .scholarship-details {
+    margin-bottom: 20px;
+  }
+  
+  .scholarship-title {
+    color: #007bff;
+  }
+  
+  .scholarship-image {
+    max-width: 100%;
+  }
+  
+  /* .container {
+    padding-top: 50px;
+  } */
+  
