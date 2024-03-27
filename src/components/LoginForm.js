@@ -51,7 +51,7 @@ const LoginForm = () => {
                 </div>
                 {error && <p className="text-red-500">{error}</p>} {/* Display error message if exists */}
                 <div className="relative">
-                  <button type="submit" className="bg-cyan-500 text-white rounded-md px-4 py-2">Submit</button>
+                  <button type="submit" className="bg-cyan-500 text-white rounded-md px-4 py-2">Login</button>
                 </div>
               </div>
             </form>
