@@ -13,29 +13,40 @@ import LoginForm from "./components/LoginForm"
 import Design from './components/Design';
 
 import SignUpForm from './components/SignUpForm';
-
+import Portal from './pages/Portal';
+import PortalSideBar from './components/PortalSideBar';
+import PortalHome from './components/PortalHome';
+import UserProfile from './components/UserProfile';
 const App = () => {
   return (
     <Router>
       <div className="App"> 
- 
-        <Routes>
-          <Route path="/" element={<Design/>}>
-            <Route index element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/UniversityDetailsPage/:id" element={<UniversityDetailsPage />} />
-            <Route path="/Scholarships" element={<ScholarshipPage />} />
-            <Route path="/scholarship/:id" element={<ScholarshipDetails />} />
-            <Route path="/Universities" element={<UniversityPage />} />
-            <Route path="/Admission" element={<Admissions />} />
+ {      
+        
+         <Routes>
+          <Route path="/" element={<PortalSideBar />}>
+          <Route index element={<PortalHome />} />
+          <Route path="/profile" element={<UniversityPage />} />
           </Route>
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/signup" element={<SignUpForm />} />
+        </Routes> 
+}
+         {/* <Routes>
+           <Route path="/" element={<Design/>}>
+             <Route index element={<HomePage />} />
+             <Route path="/about" element={<AboutPage />} />
+             <Route path="/UniversityDetailsPage/:id" element={<UniversityDetailsPage />} />
+             <Route path="/Scholarships" element={<ScholarshipPage />} />
+             <Route path="/scholarship/:id" element={<ScholarshipDetails />} />
+             <Route path="/Universities" element={<UniversityPage />} />
+             <Route path="/Admission" element={<Admissions />} />
+           </Route>
+             <Route path="/login" element={<LoginForm />} />
+             <Route path="/dashboard" element={<Dashboard />} />
+             <Route path="/signup" element={<SignUpForm />} />
                   
-        </Routes>
-      
-         
+        </Routes> */}
+       {/* } */}
+         {/* <Portal/> */}
 
       </div>
     </Router>
