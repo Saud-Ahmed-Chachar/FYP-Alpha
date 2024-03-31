@@ -20,17 +20,16 @@ import UserProfile from './components/UserProfile';
 const App = () => {
   return (
     <Router>
-      <div className="App"> 
- {      
+      <div className="App"> {      
         
-         <Routes>
-          <Route path="/" element={<PortalSideBar />}>
-          <Route index element={<PortalHome />} />
-          <Route path="/profile" element={<UniversityPage />} />
-          </Route>
-        </Routes> 
-}
-         {/* <Routes>
+        //  <Routes>
+        //   <Route path="/" element={<PortalSideBar />}>
+        //   <Route index element={<PortalHome />} />
+        //   <Route path="/profile" element={<UniversityPage />} />
+        //   </Route>
+        // </Routes> 
+
+          <Routes>
            <Route path="/" element={<Design/>}>
              <Route index element={<HomePage />} />
              <Route path="/about" element={<AboutPage />} />
@@ -43,10 +42,10 @@ const App = () => {
              <Route path="/login" element={<LoginForm />} />
              <Route path="/dashboard" element={<Dashboard />} />
              <Route path="/signup" element={<SignUpForm />} />
+             <Route path="/portal" element={<PortalSideBar />} />
                   
-        </Routes> */}
-       {/* } */}
-         {/* <Portal/> */}
+        </Routes> 
+}
 
       </div>
     </Router>

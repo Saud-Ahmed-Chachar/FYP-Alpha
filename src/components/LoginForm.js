@@ -23,7 +23,7 @@ const LoginForm = () => {
       const user = userCredential.user;
       console.log("User logged in:", user);
       // Redirect user to Dashboard page after successful login
-      navigate('/dashboard');
+      navigate('/portal');
     } catch (error) {
       console.error("Error signing in:", error.message);
       setError(error.message); // Set error message to display to the user
