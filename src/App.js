@@ -17,6 +17,7 @@ import Portal from './pages/Portal';
 import PortalSideBar from './components/PortalSideBar';
 import PortalHome from './components/PortalHome';
 import UserProfile from './components/UserProfile';
+import AppliedApplications from './components/PortalComponents/AppliedApplications';
 const App = () => {
   return (
     <Router>
@@ -39,11 +40,14 @@ const App = () => {
              <Route path="/Universities" element={<UniversityPage />} />
              <Route path="/Admission" element={<Admissions />} />
            </Route>
-             <Route path="/login" element={<LoginForm />} />
-             <Route path="/dashboard" element={<Dashboard />} />
-             <Route path="/signup" element={<SignUpForm />} />
-             <Route path="/portal" element={<PortalSideBar />} />
-                  
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/portal/" element={<PortalSideBar />} >
+              <Route index element={<UserProfile />}/>
+              <Route path='/portal/home' element={<PortalHome/>}/>
+              <Route path="/portal/myApplication" element={<AppliedApplications />}/>
+            </Route>     
         </Routes> 
 }
 

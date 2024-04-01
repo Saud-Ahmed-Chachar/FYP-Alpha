@@ -106,7 +106,7 @@ const UserProfile = () => {
       setEduFormData({ ...eduFormData, [name]: value });
     };
   return (
-    <div>
+    <div style={{width:"100%"}}>
       <div className="flex items-center justify-between bg-gray-200 rounded-md py-4 px-6">
         <div className="flex items-center">
           <div className="mr-4">

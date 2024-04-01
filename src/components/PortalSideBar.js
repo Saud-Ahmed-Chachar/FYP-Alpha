@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Badge, Sidebar } from "flowbite-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import {
   HiArrowSmRight,
   HiHome,
@@ -14,6 +14,7 @@ import {
   HiDatabase,
 } from "react-icons/hi";
 import UserProfile from "./UserProfile";
+import AppliedApplications from "./PortalComponents/AppliedApplications";
 
 function PortalSideBar() {
   const [isOpen, setIsOpen] = useState(true);
@@ -30,7 +31,7 @@ function PortalSideBar() {
   return (
     <div>
      {/* Header */}
-     <header className="flex items-center justify-between bg-white py-4 px-6">
+     <header className="flex items-center justify-between bg-white py-4 px-6 " >
         <div className="flex items-center">
           <div className="mr-4">
             {/* Your logo component or image */}
@@ -44,33 +45,31 @@ function PortalSideBar() {
             <button className="flex items-center focus:outline-none" onClick={toggleDropdown}> {/* Add onClick event to toggle dropdown */}
              
               <div className="mr-3 ">
-                <h1>John Doe</h1>
+                <h1>Ameer Ali</h1>
               </div>
               <FontAwesomeIcon icon={faUser} className="text-gray-500 mr-2" />
             </button>
             {/* Dropdown menu */}
             <div className={`absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10 ${isDropdownOpen ? '' : 'hidden'}`}> {/* Add dynamic class based on dropdown visibility */}
-              <a
-                href="#"
+              <Link to={"/portal"}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white flex items-center"
               >
                 <FontAwesomeIcon icon={faUser} className="text-gray-500 mr-2" />
                 Profile
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link to={"/"}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white flex items-center"
               >
                 <FontAwesomeIcon icon={faCog} className="text-gray-500 mr-2" />
                 Settings
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to={"/login"}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white flex items-center"
               >
                 <FontAwesomeIcon icon={faSignOutAlt} className="text-gray-500 mr-2" />
                 Sign out
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -81,13 +80,15 @@ function PortalSideBar() {
         <Sidebar aria-label="Sidebar with call to action button example" className="w-64 bg-gray-200">
           <Sidebar.Items>
             <Sidebar.ItemGroup>
-              <Sidebar.Item
-                href="#"
-                icon={HiHome}
-                className="group hover:bg-indigo-500 hover:text-white"
-              >
-                Home
-              </Sidebar.Item>
+              <Link to={"/portal/home"}>
+                <Sidebar.Item
+                  icon={HiHome}
+                  className="group hover:bg-indigo-500 hover:text-white"
+                  >
+                  Home
+                </Sidebar.Item>
+              </Link>
+              <Link to={"/portal/"}>
               <Sidebar.Item
                 href="/profile"
                 icon={HiUser}
@@ -95,36 +96,38 @@ function PortalSideBar() {
               >
                Profile
               </Sidebar.Item>
+              </Link>
+              <Link to={"/portal/myApplication"}>
+                <Sidebar.Item       
+                  icon={HiViewBoards}
+                  className="group hover:bg-indigo-500 hover:text-white"
+                >
+                  Applied Applications
+                </Sidebar.Item>
+              </Link>
               <Sidebar.Item
-                href="#"
-                icon={HiViewBoards}
-                className="group hover:bg-indigo-500 hover:text-white"
-              >
-                Applications
-              </Sidebar.Item>
-              <Sidebar.Item
-                href="#"
+                href="/myApplication"
                 icon={HiStatusOnline}
                 className="group hover:bg-indigo-500 hover:text-white"
               >
                 Status
               </Sidebar.Item>
               <Sidebar.Item
-                href="#"
+                href="/myApplication"
                 icon={HiOfficeBuilding}
                 className="group hover:bg-indigo-500 hover:text-white"
               >
                 Universities
               </Sidebar.Item>
               <Sidebar.Item
-                href="#"
+                href="/university"
                 icon={HiArrowSmRight}
                 className="group hover:bg-indigo-500 hover:text-white"
               >
                 Scholarships
               </Sidebar.Item>
               <Sidebar.Item
-                href="#"
+                href="scholarships"
                 icon={HiTable}
                 className="group hover:bg-indigo-500 hover:text-white"
               >
@@ -157,7 +160,7 @@ function PortalSideBar() {
               </button>
             </div>
             <div className="mb-3 text-sm text-cyan-900 dark:text-gray-400">
-              Preview the new Flowbite dashboard navigation! You can turn the new
+              Preview the new dashboard navigation! You can turn the new
               navigation off for a limited time in your profile.
             </div>
             <a
@@ -169,13 +172,7 @@ function PortalSideBar() {
           </Sidebar.CTA>
         </Sidebar>
       )}
-
-      {/* Right column */}
-      <div className="flex-1 flex ">
-        <UserProfile/>
-      </div>
-
-      {/* <UserProfile/> */}
+      <Outlet/>
     </div>
     </div>
   );

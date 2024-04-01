@@ -49,10 +49,10 @@ const ScholarshipPage = () => {
       <div className="py-8 pl-8 pr-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
         {filteredScholarships.map((scholarship, index) => (
           <div key={index} className="bg-white outline outline-2 outline-gray-500 outline-offset-2 shadow-md rounded-lg p-4">
-            <div className=' w-48 h-48 p-4'>
-            <div className="object-fit flex item-center">
-              <img src={scholarship.Image} alt={scholarship.Title} className="w-full h-full object-cover" />
-            </div>
+            <div className='h-78 p-4'>
+              <div className="object-fit flex item-center justify-center c-center">
+                <img src={scholarship.Image} alt={scholarship.Title} className="w-full h-full object-cover" />
+              </div>
             </div>
             <div className="flex justify-between items-center mt-4">
               <div>
