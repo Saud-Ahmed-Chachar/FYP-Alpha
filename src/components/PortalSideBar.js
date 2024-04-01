@@ -163,12 +163,12 @@ function PortalSideBar() {
               Preview the new dashboard navigation! You can turn the new
               navigation off for a limited time in your profile.
             </div>
-            <a
+            {/* <a
               className="text-sm text-cyan-900 underline hover:text-cyan-800 dark:text-gray-400 dark:hover:text-gray-300"
               href="#"
             >
               Turn new navigation off
-            </a>
+            </a> */}
           </Sidebar.CTA>
         </Sidebar>
       )}
