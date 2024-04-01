@@ -15,10 +15,11 @@ import Design from './components/Design';
 import SignUpForm from './components/SignUpForm';
 import Portal from './pages/Portal';
 import PortalSideBar from './components/PortalSideBar';
-import PortalHome from './components/PortalHome';
+import PortalHome from './components/PortalComponents/PortalHome';
 import UserProfile from './components/UserProfile';
 import AppliedApplications from './components/PortalComponents/AppliedApplications';
 import PortalUniversity from './components/PortalComponents/PortalUniversity';
+import PortalScholarships from './components/PortalComponents/PortalScholarships';
 const App = () => {
   return (
     <Router>
@@ -49,9 +50,9 @@ const App = () => {
               <Route path='/portal/home' element={<PortalHome/>}/>
               <Route path="/portal/myApplication" element={<AppliedApplications />}/>
               <Route path="/portal/university" element={<PortalUniversity />} />
-              <Route path="/portal/scholarships" element={<PortalUniversity />} />
-              <Route path="/portal/admissions" element={<PortalUniversity />} />
-              
+              <Route path="/portal/scholarships" element={<ScholarshipPage />} />
+              <Route path="/portal/admissions" element={<Admissions />} />
+
             </Route>     
         </Routes> 
 }
