@@ -44,7 +44,7 @@ function PortalSideBar() {
             <button className="flex items-center focus:outline-none" onClick={toggleDropdown}> {/* Add onClick event to toggle dropdown */}
              
               <div className="mr-3 ">
-                <h1>John Doe</h1>
+                <h1>Ameer Ali</h1>
               </div>
               <FontAwesomeIcon icon={faUser} className="text-gray-500 mr-2" />
             </button>
@@ -160,12 +160,12 @@ function PortalSideBar() {
               Preview the new Flowbite dashboard navigation! You can turn the new
               navigation off for a limited time in your profile.
             </div>
-            <a
+            {/* <a
               className="text-sm text-cyan-900 underline hover:text-cyan-800 dark:text-gray-400 dark:hover:text-gray-300"
               href="#"
             >
               Turn new navigation off
-            </a>
+            </a> */}
           </Sidebar.CTA>
         </Sidebar>
       )}
