@@ -188,10 +188,10 @@ const UserProfile = () => {
   boxSizing: 'border-box'
 }}>
   <div className="flex items-center">
-    <div className="mr-4">
+    {/* <div className="mr-4">
       <img className="w-32 h-32 object-cover rounded-full" src={profile} alt="logo" />
-    </div>
-    <h1 className="text-2xl font-bold">Ameer Ali</h1>
+    </div> */}
+    <h1 className="text-2xl font-bold">User Profile Information</h1>
   </div>
 </div>
 

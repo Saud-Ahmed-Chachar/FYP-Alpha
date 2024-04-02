@@ -70,9 +70,21 @@ function PortalSideBar() {
                 <Sidebar.Item href="/portal/admissions" icon={HiTable} className="group text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
                   Admissions
                 </Sidebar.Item>
+
+                {/* <Sidebar.Item href="/portal/admissions" icon={HiTable} className="group text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
+                  Sign
+                </Sidebar.Item> */}
+                  <Link to={"/"} className="block px-4 py-2 text-sm text-white-700 hover:bg-indigo-500 hover:text-white flex items-center">
+                    <FontAwesomeIcon icon={faSignOutAlt} className="text-white-500 mr-2" />
+                    Sign out
+                  </Link>
               </Sidebar.ItemGroup>
             </Sidebar.Items>
-            <Sidebar.CTA>
+
+          
+
+
+            {/* <Sidebar.CTA>
               <div className="mb-3 flex items-center">
                 <Badge color="warning">Beta</Badge>
                 <button
@@ -96,11 +108,10 @@ function PortalSideBar() {
                   </svg>
                 </button>
               </div>
-              <div className="mb-3 text-sm text-cyan-900 dark:text-gray-400">
+              {/* <div className="mb-3 text-sm text-cyan-900 dark:text-gray-400">
                 Preview the new dashboard navigation! You can turn the new
                 navigation off for a limited time in your profile.
-              </div>
-            </Sidebar.CTA>
+              </div>  </Sidebar.CTA> */}
           </Sidebar>
         </div>
       )}
@@ -115,33 +126,7 @@ function PortalSideBar() {
               </div>
               <h1 className="text-lg font-semibold text-gray-800">University Recommendation</h1>
             </div>
-            <div className="flex items-center">
-              {/* Profile dropdown */}
-              <div className="relative ml-4">
-                <button className="flex items-center focus:outline-none" onClick={toggleDropdown}>
-                  {/* Add onClick event to toggle dropdown */}
-                  <div className="mr-3 ">
-                    <h1>Ameer Ali</h1>
-                  </div>
-                  <FontAwesomeIcon icon={faUser} className="text-gray-500 mr-2" />
-                </button>
-                {/* Dropdown menu */}
-                <div className={`absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10 ${isDropdownOpen ? '' : 'hidden'}`}> {/* Add dynamic class based on dropdown visibility */}
-                  <Link to={"/portal"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white flex items-center">
-                    <FontAwesomeIcon icon={faUser} className="text-gray-500 mr-2" />
-                    Profile
-                  </Link>
-                  <Link to={"/"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white flex items-center">
-                    <FontAwesomeIcon icon={faCog} className="text-gray-500 mr-2" />
-                    Settings
-                  </Link>
-                  <Link to={"/login"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white flex items-center">
-                    <FontAwesomeIcon icon={faSignOutAlt} className="text-gray-500 mr-2" />
-                    Sign out
-                  </Link>
-                </div>
-              </div>
-            </div>
+          
           </div>
         </header>
         {/* Content */}
