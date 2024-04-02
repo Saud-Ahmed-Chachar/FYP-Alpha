@@ -182,7 +182,7 @@ const UserProfile = () => {
   
   return (
     <div>
-      <div className="flex items-center justify-between rounded-md py-4 px-6" style={{ 
+      <div className="flex items-center justify-between rounded-lg py-4 px-6" style={{ 
   background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)',
   color: 'white',
   boxSizing: 'border-box'

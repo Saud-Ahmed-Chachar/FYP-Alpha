@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -14,9 +14,8 @@ import LoginForm from "./components/LoginForm"
 import Design from './components/Design';
 
 import SignUpForm from './components/SignUpForm';
-import Portal from './pages/Portal';
 import PortalSideBar from './components/PortalSideBar';
-import PortalHome from './components/PortalHome';
+// import PortalHome from './components/PortalHome';
 import UserProfile from './components/UserProfile';
 import AppliedApplications from './components/PortalComponents/AppliedApplications';
 import PortalUniversity from './components/PortalComponents/PortalUniversity';
