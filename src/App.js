@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import UniversityDetailsPage from './pages/UniversityDetailsPage';
+import PortalUniversityDetails from './components/PortalComponents/PortalUniversityDetails';
 import ScholarshipPage from './pages/ScholarshipPage';
 import ScholarshipDetails from './pages/ScholarshipDetailsPage';
 import Admissions from './components/Admssions';
@@ -46,9 +47,10 @@ const App = () => {
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/portal/" element={<PortalSideBar />} >
               <Route index element={<UserProfile />}/>
-              <Route path='/portal/home' element={<PortalHome/>}/>
+              {/* <Route path='/portal/home' element={<PortalHome/>}/> */}
               <Route path="/portal/myApplication" element={<AppliedApplications />}/>
               <Route path="/portal/university" element={<PortalUniversity />} />
+              <Route path="university/:id" element={<PortalUniversityDetails />} /> 
               <Route path="/portal/scholarships" element={<PortalUniversity />} />
               <Route path="/portal/admissions" element={<PortalUniversity />} />
               

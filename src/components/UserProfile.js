@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import profile from '../assets/images/profile.jpg';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {
   addDoc,
@@ -18,6 +20,9 @@ const formatLabel = (label) => {
 };
 
 const UserProfile = () => {
+  const navigate = useNavigate();
+  const [user] = useAuthState(auth);
+
 
   const [selectedFiles, setSelectedFiles] = useState({
     passportSizePhoto: null,
@@ -144,25 +149,26 @@ const UserProfile = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const userEmail = formData.email;
+  
+    // Use authenticated user's email instead of form input
+    const userEmail = user?.email;
     if (!userEmail) {
-      console.error("No email provided.");
+      console.error("No authenticated user found.");
       return;
     }
-
+  
     const fileUrls = await uploadFiles();
-
+  
     const submissionData = {
-      profileData: formData,
+      profileData: { ...formData, email: userEmail }, // Ensure the formData uses the authenticated user's email
       educationData: eduFormData,
       uploadedFiles: fileUrls,
       timeStamp: serverTimestamp(),
     };
-
+  
     const userDocRef = doc(db, "users", userEmail);
     const docSnap = await getDoc(userDocRef);
-
+  
     if (docSnap.exists()) {
       await updateDoc(userDocRef, submissionData);
       console.log("Document updated with ID: ", userEmail);
@@ -170,8 +176,10 @@ const UserProfile = () => {
       await setDoc(userDocRef, submissionData);
       console.log("Document created with ID: ", userEmail);
     }
+  
+    navigate('/portal/university');
   };
-
+  
   return (
     <div>
       <div className="flex items-center justify-between rounded-md py-4 px-6" style={{ 

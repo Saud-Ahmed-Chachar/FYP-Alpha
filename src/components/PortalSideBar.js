@@ -45,11 +45,11 @@ function PortalSideBar() {
             </div>
             <Sidebar.Items className="text-white">
               <Sidebar.ItemGroup>
-                <Link to={"/portal/home"}>
+                {/* <Link to={"/portal/home"}>
                   <Sidebar.Item icon={HiHome} className="group text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
                     Home
                   </Sidebar.Item>
-                </Link>
+                </Link> */}
                 <Link to={"/portal/"}>
                   <Sidebar.Item href="/profile" icon={HiUser} className="group text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
                     Profile
