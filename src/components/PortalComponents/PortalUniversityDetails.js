@@ -18,8 +18,8 @@ const PortalUniversityDetails = () => {
       return;
     }
   
-    // Sanitize the university URL to be used as a Firestore document ID
-    const sanitizedUniversityURL = university.University_URL.replace(/\//g, '_');
+    // Remove the protocol and replace slashes with underscores
+    const sanitizedUniversityURL = university.University_URL.replace(/^https?:\/\//, '').replace(/\//g, '_');
   
     // Reference to the university-specific applications collection
     const universityApplicationsRef = doc(firestore, `applications/${sanitizedUniversityURL}/applicants`, user.email);
@@ -38,6 +38,7 @@ const PortalUniversityDetails = () => {
       alert('Application submitted successfully!');
     }
   };
+  
   
   
   if (!university) {
