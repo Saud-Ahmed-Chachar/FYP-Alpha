@@ -5,6 +5,9 @@ import { useAuthState } from 'react-firebase-hooks/auth'; // Assuming you're usi
 import { auth, firestore } from '../../backend/firebase'; // Your Firebase config file
 import { doc, setDoc, getDoc } from 'firebase/firestore'; // Firestore methods
 import PortalUniversity from './PortalUniversity';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const PortalUniversityDetails = () => {
   const { id } = useParams();
@@ -14,30 +17,26 @@ const PortalUniversityDetails = () => {
 
   const applyNow = async () => {
     if (!user) {
-      alert('Please log in to apply');
+      toast.error('Please log in to apply');
       return;
     }
   
-    // Remove the protocol and replace slashes with underscores
     const sanitizedUniversityURL = university.University_URL.replace(/^https?:\/\//, '').replace(/\//g, '_');
-  
-    // Reference to the university-specific applications collection
     const universityApplicationsRef = doc(firestore, `applications/${sanitizedUniversityURL}/applicants`, user.email);
     const docSnap = await getDoc(universityApplicationsRef);
   
     if (docSnap.exists()) {
-      alert('You have already applied to this university with this email.');
+      toast.warning('You have already applied to this university with this email.');
     } else {
-      // Store application data within a subcollection for the university
       await setDoc(universityApplicationsRef, {
         userEmail: user.email,
         userName: user.displayName, // Assuming displayName is available
-        appliedAt: new Date(), // Store the application date
-        // Include any other user-specific or application-specific data here
+        appliedAt: new Date(),
       });
-      alert('Application submitted successfully!');
+      toast.success('Application submitted successfully!');
     }
   };
+  
   
   
   
@@ -47,6 +46,7 @@ const PortalUniversityDetails = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-5">
+       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <div className="flex flex-col md:flex-row items-center gap-4 p-5">
         <img src={university.Image} alt={`${university['University Name']} Logo`} className="w-24 h-24 object-contain rounded-full shadow-md" />
         <h1 className="text-2xl font-bold text-gray-700">{university['University Name']}</h1>
