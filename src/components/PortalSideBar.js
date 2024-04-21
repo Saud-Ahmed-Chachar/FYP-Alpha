@@ -63,6 +63,10 @@ function PortalSideBar() {
                 <Sidebar.Item href="/portal/university" icon={HiOfficeBuilding} className="group  text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
                   Universities
                 </Sidebar.Item>
+
+                <Sidebar.Item href="/portal/recommendation" icon={HiOfficeBuilding} className="group  text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
+                 Recommendation
+                </Sidebar.Item>
                 <Sidebar.Item href="/portal/scholarships" icon={HiArrowSmRight} className="group text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
                   Scholarships
                 </Sidebar.Item>
