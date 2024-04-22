@@ -45,16 +45,25 @@ function Header() {
                     <li className="text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                         <a href="/about" className="hover:underline">About Us</a>
                     </li>
+                    <li className={`text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10 ${show ? 'md:hidden lg:hidden' : 'hidden'}`}>
+                                        <Link to="/login" className="hover:underline">Sign In</Link>
+                                    </li>
+                                    <li className={`text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10 ${show ? 'md:hidden lg:hidden' : 'hidden'}`}>
+                                        <Link to="/signup" className="hover:underline">Register</Link>
+                                    </li>
+                    
                 </ul>
             </div>
         </div>
         <div className="flex items-center">
             <Link to="/login">
-                <button className="focus:outline-none lg:text-lg lg:font-bold focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-4 sm:px-8 py-2 sm:py-3 border border-indigo-700 text-sm">Sign In</button>
+            <button className={"focus:outline-none lg:text-lg lg:font-bold focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-4 sm:px-5 py-2 sm:py-2 border border-indigo-700 " + (show ? 'hidden md:block sm:block' : 'hidden lg:block')}>Sign In</button>
             </Link>
+
             <Link to="/signup">
-                <button className="ml-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-transparent transition duration-150 ease-in-out hover:border-indigo-600 lg:text-lg lg:font-bold hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-4 sm:px-8 py-2 sm:py-3 text-sm">Register</button>
-            </Link>
+    <button className={"ml-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-transparent transition duration-150 ease-in-out hover:border-indigo-600 lg:text-lg lg:font-bold hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-4 sm:px-5 py-2 sm:py-2 text-sm " + (show ? 'hidden md:block sm:block' : 'hidden lg:block')}>Register</button>
+</Link>
+
         </div>
     </div>
 </nav>
