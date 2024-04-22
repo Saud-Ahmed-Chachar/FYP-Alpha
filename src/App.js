@@ -22,7 +22,6 @@ import PortalUniversity from './components/PortalComponents/PortalUniversity';
 import PortalScholarships from './components/PortalComponents/PortalScholarships';
 import PortalScholarshipsDetails from './components/PortalComponents/PortalScholarshipsDetails';
 import PortalAdmissions from './components/PortalComponents/PortalAdmissions';
-import Recommendation from './components/Recommendation';
 const App = () => {
   return (
     <Router>
@@ -56,6 +55,7 @@ const App = () => {
               <Route path="/portal/university" element={<PortalUniversity />} />
               <Route path="university/:id" element={<PortalUniversityDetails />} /> 
               <Route path="/portal/scholarships" element={<PortalScholarships />} />
+              <Route path="/portal/recommendation" element={<PortalRecommendation />} />
               <Route path="scholarships/:id" element={<PortalScholarshipsDetails />} />
               <Route path="/portal/admissions" element={<PortalAdmissions />} />
               

@@ -35,6 +35,7 @@ const Dashboard = () => {
           {/* Use Link component to navigate to different pages */}
           <li className="mb-2"><Link to="/about">Profile</Link></li>
           <li className="mb-2"><Link to="/universities">Universities</Link></li>
+          <li className="mb-2"><Link to="/recommendation">Recommendation</Link></li>
           <li className="mb-2"><Link to="/admission">Admission</Link></li>
           <li className="mb-2"><Link to="/scholarships">Scholarships</Link></li>
 

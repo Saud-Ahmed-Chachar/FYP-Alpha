@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import profile from '../assets/images/profile.jpg';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { auth, db, storage } from "../backend/firebase";
 
+
 const formatLabel = (label) => {
   // Replace camelCase with spaces and capitalize each word
   return label.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/\b\w/g, (char) => char.toUpperCase());
@@ -22,6 +23,12 @@ const formatLabel = (label) => {
 const UserProfile = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+
+
+  useEffect(() => {
+    const storedUrls = JSON.parse(localStorage.getItem('previewUrls') || '{}');
+    setPreviewUrls(storedUrls);
+  }, []);
 
 
   const [selectedFiles, setSelectedFiles] = useState({
@@ -71,6 +78,9 @@ const UserProfile = () => {
     percentage: '80%',
     gradeCGPA: 'A1'
   });
+
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
 
   const uploadSections = [
     { label: 'Passport Size Photo', key: 'passportSizePhoto' },
@@ -128,12 +138,15 @@ const UserProfile = () => {
 
       const reader = new FileReader();
       reader.onload = (e) => {
-        setPreviewUrls(prev => ({ ...prev, [fileType]: e.target.result }));
+        setPreviewUrls(prev => {
+          const newUrls = { ...prev, [fileType]: e.target.result };
+          localStorage.setItem('previewUrls', JSON.stringify(newUrls)); // Also save new preview URL to localStorage
+          return newUrls;
+        });
       };
       reader.readAsDataURL(file);
     }
   };
-
   const uploadFiles = async () => {
     const urls = {};
 
@@ -144,9 +157,10 @@ const UserProfile = () => {
       urls[key] = await getDownloadURL(fileRef);
     }
 
+    // Store URLs in localStorage
+    localStorage.setItem('previewUrls', JSON.stringify(urls));
     return urls;
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
   

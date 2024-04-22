@@ -14,8 +14,7 @@ import {
   HiViewBoards,
   HiDatabase,
 } from "react-icons/hi";
-import UserProfile from "./UserProfile";
-import AppliedApplications from "./PortalComponents/AppliedApplications";
+
 
 function PortalSideBar() {
   const [isOpen, setIsOpen] = useState(true);
@@ -41,7 +40,7 @@ function PortalSideBar() {
             </div>
             {/* Profile name */}
             <div className="text-center mb-4">
-              <h1 className="text-lg font-semibold">Ameer Ali</h1>
+              <h1 className="text-lg font-semibold">User Portal</h1>
             </div>
             <Sidebar.Items className="text-white">
               <Sidebar.ItemGroup>
@@ -63,6 +62,10 @@ function PortalSideBar() {
                 
                 <Sidebar.Item href="/portal/university" icon={HiOfficeBuilding} className="group  text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
                   Universities
+                </Sidebar.Item>
+
+                <Sidebar.Item href="/portal/recommendation" icon={HiOfficeBuilding} className="group  text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
+                 Recommendation
                 </Sidebar.Item>
                 <Sidebar.Item href="/portal/scholarships" icon={HiArrowSmRight} className="group text-white hover:bg-indigo-500 hover:text-white" activeClassName="text-white">
                   Scholarships
