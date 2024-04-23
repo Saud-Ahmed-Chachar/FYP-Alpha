@@ -9,12 +9,11 @@ import { ChevronDownIcon, FunnelIcon, PlusIcon, Squares2X2Icon } from '@heroicon
 
 
 const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
-]
+  { name: 'Name', value: 'University Name' },
+  { name: 'Rank', value: 'ranking' },
+  { name: 'World Rank', value: 'World Rank' },
+  { name: 'Excellence Rank', value: 'Excellence Rank' },
+];
 
 const filters = [
   {
@@ -50,6 +49,7 @@ const UniversityPage = () => {
     const [selectedSector, setSelectedSector] = useState('');
     const [showAll, setShowAll] = useState(true);
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+    const [sortOption, setSortOption] = useState(sortOptions[0].value); // Default sorting by Name
 
     // Define pagination variables
     const itemsPerPage = 10;
@@ -77,9 +77,26 @@ const UniversityPage = () => {
         const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
         return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
     };
-
+    useEffect(() => {
+      // Sort universities based on selected sorting option
+      const sortedUniversities = universityData.slice().sort((a, b) => {
+          if (a[sortOption] < b[sortOption]) {
+              return -1;
+          }
+          if (a[sortOption] > b[sortOption]) {
+              return 1;
+          }
+          return 0;
+      });
+  
+      // Set sorted universities data
+      setUniversities(sortedUniversities);
+  
+  }, [sortOption]); // Trigger effect whenever sortOption changes
+  
     useEffect(() => {
         setUniversities(universityData);
+
     }, []);
 
     // Function to handle province filter
@@ -109,14 +126,44 @@ const UniversityPage = () => {
         setCurrentPage(1); // Reset pagination to first page
     };
 
+    const handleSort = (value) => {
+      setSortOption(value);
+  };
+
+  // Sort universities based on selected sorting option
+  const sortedUniversities = universities.slice().sort((a, b) => {
+      if (a[sortOption] < b[sortOption]) {
+          return -1;
+      }
+      if (a[sortOption] > b[sortOption]) {
+          return 1;
+      }
+      return 0;
+  });
     const filteredUniversities = showAll ? universities : universityData;
 
+    // Function to paginate sorted universities array
+const paginateSorted = (pageNumber) => {
+  const startIndex = (pageNumber - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  return sortedUniversities.slice(startIndex, endIndex);
+};
+
+// Function to generate array of page numbers to display
+if (!getPageNumbers) {
+  const getPageNumbers = () => {
+    const maxPagesToShow = 5; // Change this value to adjust the maximum number of page links to show
+    const startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+    const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  };
+}
     return (
         <div>
            <div className='flex flex-col items-left py-6  pl-12'>
            <h1 class="flex items-center text-5xl pt-12 font-extrabold dark:text-indigo ">Explore<span class="bg-indigo-100 text-blue-800 text-2xl font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2">New</span></h1>
           </div>
-        <div className=" flex flex-col lg:flex-row-reverse justify-between items-center p-8 lg:p-12">
+        <div className=" flex flex-col justify-between items-center p-8 lg:p-12">
           <div className="lg:w-1/3">
         {/* search bar */}
               <SearchBar />
@@ -249,48 +296,46 @@ const UniversityPage = () => {
             
         </div>
             <div className="flex items-center">
-              <Menu as="div" className="relative inline-block text-left">
-                <div>
-                  <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                    Sort
-                    <ChevronDownIcon
-                      className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                  </Menu.Button>
-                </div>
+                             <Menu as="div" className="relative inline-block text-left">
+                                  <div>
+                                      <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                                          Sort
+                                          <ChevronDownIcon className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500" aria-hidden="true" />
+                                      </Menu.Button>
+                                  </div>
 
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="py-1">
-                      {sortOptions.map((option) => (
-                        <Menu.Item key={option.name}>
-                          {({ active }) => (
-                            <a
-                              href={option.href}
-                              className={classNames(
-                                option.current ? 'font-medium text-gray-900' : 'text-gray-500',
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm'
-                              )}
-                            >
-                              {option.name}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))}
-                    </div>
-                  </Menu.Items>
-                </Transition>
-              </Menu>
+                                  <Transition
+                                      as={Fragment}
+                                      enter="transition ease-out duration-100"
+                                      enterFrom="transform opacity-0 scale-95"
+                                      enterTo="transform opacity-100 scale-100"
+                                      leave="transition ease-in duration-75"
+                                      leaveFrom="transform opacity-100 scale-100"
+                                      leaveTo="transform opacity-0 scale-95"
+                                  >
+                                      <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                          <div className="py-1">
+                                              {sortOptions.map((option) => (
+                                                  <Menu.Item key={option.name}>
+                                                      {({ active }) => (
+                                                          <a
+                                                              href={option.href}
+                                                              className={classNames(
+                                                                  option.current ? 'font-medium text-gray-900' : 'text-gray-500',
+                                                                  active ? 'bg-gray-100' : '',
+                                                                  'block px-4 py-2 text-sm'
+                                                              )}
+                                                              onClick={() => handleSort(option.value)}
+                                                          >
+                                                              {option.name}
+                                                          </a>
+                                                      )}
+                                                  </Menu.Item>
+                                              ))}
+                                          </div>
+                                      </Menu.Items>
+                                  </Transition>
+                              </Menu>
 
               <button type="button" className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
                 <span className="sr-only">View grid</span>
@@ -362,23 +407,23 @@ const UniversityPage = () => {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* University cards */}
-          <div className="flex flex-col items-center pl-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-8">
-        {paginate(currentPage).map((uni, index) => (
-          <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden flex">
-            <img className="h-48 w-48 object-cover object-center" src={uni.Image} alt={uni['University Name']} />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold">{uni['University Name']}</h3>
-              <p>Ranking: {uni.ranking}</p>
-              <p>World Rank: {uni['World Rank']}</p>
-              <p>Excellence Rank: {uni['Excellence Rank']}</p>
-              <p>Specialization: {uni.Specialization}</p>
-              <p>Sector: {uni.Sector}</p>
-              <a href={`/UniversityDetailsPage/${index}`} className="text-blue-500 mt-2 inline-block">View Details</a>
+                <div className="flex flex-col items-center pl-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-8">
+    {paginateSorted(currentPage).map((uni, index) => (
+            <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden flex">
+                <img className="h-48 w-48 object-cover object-center" src={uni.Image} alt={uni['University Name']} />
+                <div className="p-6">
+                    <h3 className="text-xl font-semibold">{uni['University Name']}</h3>
+                    <p>Ranking: {uni.ranking}</p>
+                    <p>World Rank: {uni['World Rank']}</p>
+                    <p>Excellence Rank: {uni['Excellence Rank']}</p>
+                    <p>Specialization: {uni.Specialization}</p>
+                    <p>Sector: {uni.Sector}</p>
+                    <a href={`/UniversityDetailsPage/${index}`} className="text-blue-500 mt-2 inline-block">View Details</a>
+                </div>
             </div>
-          </div>
         ))}
-      </div>
+    </div>
 
       <nav aria-label="Page navigation example" className="mt-8">
         <ul className="list-none flex">
