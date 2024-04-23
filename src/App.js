@@ -49,7 +49,7 @@ const App = () => {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/signup" element={<SignUpForm />} />
-            <Route path="/recommendation" element={<Recommendation />} />
+            <Route path="/recommendation" element={<PortalRecommendation />} />
             <Route path="/portal/" element={<PortalSideBar />} >
               <Route index element={<UserProfile />}/>
               {/* <Route path='/portal/home' element={<PortalHome/>}/> */}
