@@ -1,0 +1,25 @@
+  
+[
+    {
+        "university": "Sukkur IBA University",
+        "admission_info": "Admissions are now open for the upcoming semester. Please visit our website for more information.",
+        "deadline": "2024-08-31",
+        "visit_link": "https://www.applyadmission.iba-suk.edu.edu",
+        "image": "https://pbs.twimg.com/media/FExtnZZXoAUIZCk?format=jpg&name=4096x4096"
+    },
+    {
+        "university": "NED University of Engineering and Technology",
+        "admission_info": "Admissions are now open for the upcoming semester. Please visit our website for more information.",
+        "deadline": "2024-08-31",
+        "visit_link": "https://www.applyadmission.ned.edu.edu",
+        "image": "https://pbs.twimg.com/media/FExtnZZXoAUIZCk?format=jpg&name=4096x4096"
+    },
+    {
+        "university": "Mehran University",
+        "admission_info": "Admissions are now open for the upcoming semester. Please visit our website for more information.",
+        "deadline": "2024-08-31",
+        "visit_link": "https://www.applyadmission.iba-suk.edu.edu",
+        "image": "https://www.eduvision.edu.pk/admissions/mehran-university-of-engineering-&-technology-jamshoro-admission-14-4-24.webp"
+    }
+
+]
