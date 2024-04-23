@@ -147,7 +147,7 @@ const Universities = () => {
 
     return (
         <div>
-           <div className='flex flex-col items-left py-12 pb-8 pl-12'>
+           <div className='flex flex-col items-left  pl-12'>
           <h1 class="flex items-center text-5xl pb-8 pt-12 font-extrabold dark:text-indigo ">Explore<span class="bg-indigo-100 text-blue-800 text-2xl font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2">New</span></h1>
 
         
@@ -172,17 +172,10 @@ const Universities = () => {
 
         </div>
         </div>                          
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-        {Object.keys(provincesData).map((provinceKey, index) => (
-          <div key={index} className="cursor-pointer p-4 bg-white shadow-md rounded-lg">
-            <img src={provincesData[provinceKey].icon} alt={provinceKey} className="mx-auto" style={customStyles.vectorImage} />
-            <h3 className="text-xl font-semibold text-center mt-4">{provinceKey}</h3>
-          </div>
-        ))}
-      </div> */}
+      
 
       {selectedProvince && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 ">
           {cities.map((city, index) => (
             <div key={index} className="cursor-pointer p-4 bg-white shadow-md rounded-lg">
               <h3 className="text-xl font-semibold text-center">{city}</h3>

@@ -197,17 +197,14 @@ const UserProfile = () => {
   return (
     <div>
       <div className="flex items-center justify-between rounded-lg py-4 px-6" style={{ 
-  background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)',
-  color: 'white',
-  boxSizing: 'border-box'
-}}>
-  <div className="flex items-center">
-    {/* <div className="mr-4">
-      <img className="w-32 h-32 object-cover rounded-full" src={profile} alt="logo" />
-    </div> */}
-    <h1 className="text-2xl font-bold">User Profile Information</h1>
-  </div>
-</div>
+        background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)',
+        color: 'white',
+        boxSizing: 'border-box'
+      }}>
+        <div className="flex items-center">
+          <h1 className="text-2xl font-bold">User Profile Information</h1>
+        </div>
+      </div>
 
       {/* Profile Information */}
       <div className="mt-6 flex">
