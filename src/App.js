@@ -22,6 +22,7 @@ import PortalUniversity from './components/PortalComponents/PortalUniversity';
 import PortalScholarships from './components/PortalComponents/PortalScholarships';
 import PortalScholarshipsDetails from './components/PortalComponents/PortalScholarshipsDetails';
 import PortalAdmissions from './components/PortalComponents/PortalAdmissions';
+import PortalRecommendation from './components/PortalRecommendation';
 const App = () => {
   return (
     <Router>
@@ -47,7 +48,7 @@ const App = () => {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/signup" element={<SignUpForm />} />
-            <Route path="/recommendation" element={<Recommendation />} />
+            <Route path="/recommendation" element={<PortalRecommendation />} />
             <Route path="/portal/" element={<PortalSideBar />} >
               <Route index element={<UserProfile />}/>
               {/* <Route path='/portal/home' element={<PortalHome/>}/> */}
