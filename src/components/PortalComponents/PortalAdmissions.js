@@ -29,8 +29,14 @@ const PortalAdmissions = () => {
 
   return (
     <>
-      <div>
-        <h1>Admissions</h1>
+      <div className="flex items-center justify-between rounded-lg py-4 px-6" style={{ 
+        background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)',
+        color: 'white',
+        boxSizing: 'border-box'
+      }}>
+        <div className="flex items-center">
+          <h1 className="text-2xl font-bold">Admissions for Undergraduate</h1>
+        </div>
       </div>
       <div className="container max-w-3xl px-4 mx-auto sm:px-8">
         <div className="py-8">

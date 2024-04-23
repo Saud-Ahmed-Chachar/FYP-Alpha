@@ -1,9 +1,9 @@
-import bannerImage from '../assets/images/Uni-Banner02.jpg';
-import SindhIcon from '../assets/icons/sindh-icon.svg';
-import PunjabIcon from '../assets/icons/punjab-icon.svg';
-import KPKIcon from '../assets/icons/kpk-icon.svg';
-import BalochistanIcon from '../assets/icons/baluchistan-icon.svg';
-import universityData from '../assets/databases/universities_data.json';
+import bannerImage from '../../assets/images/Uni-Banner.png'
+import SindhIcon from '../../assets/icons/sindh-icon.svg';
+import PunjabIcon from '../../assets/icons/punjab-icon.svg';
+import KPKIcon from '../../assets/icons/kpk-icon.svg';
+import BalochistanIcon from '../../assets/icons/baluchistan-icon.svg';
+import universityData from '../../assets/databases/universities_data.json';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 

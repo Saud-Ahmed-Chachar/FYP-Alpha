@@ -22,6 +22,8 @@ import PortalUniversity from './components/PortalComponents/PortalUniversity';
 import PortalScholarships from './components/PortalComponents/PortalScholarships';
 import PortalScholarshipsDetails from './components/PortalComponents/PortalScholarshipsDetails';
 import PortalAdmissions from './components/PortalComponents/PortalAdmissions';
+import Recommendation from './components/Recommendation';
+import PortalRecommendation from './components/PortalComponents/PortalRecommendation';
 const App = () => {
   return (
     <Router>

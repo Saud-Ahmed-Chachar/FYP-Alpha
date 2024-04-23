@@ -1,4 +1,3 @@
-// Admissions.js
 import React, { useState, useEffect } from 'react';
 import universitiesData from './universities_data.json';
 
@@ -27,78 +26,78 @@ const Admissions = () => {
     setUniversities(slicedData);
   };
 
+  // Calculate the range of pagination numbers to display
+  const startPage = Math.max(1, currentPage - 2);
+  const endPage = Math.min(totalPages, startPage + 4);
+
   return (
     <>
       <div>
-        <h1>Admissions</h1>
+        <h1 className="flex items-center text-5xl pb-8 pl-12 pt-12 font-extrabold dark:text-indigo ">Admissions<span className="bg-indigo-100 text-blue-800 text-2xl font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2">New</span></h1>
       </div>
-      <div className="container max-w-3xl px-4 mx-auto sm:px-8">
+      <div className="container max-w-4xl px-4 mx-auto sm:px-8">
         <div className="py-8">
-          <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
-            <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
-            <table className="min-w-full leading-normal">
-                <thead>
-                  <tr>
-                    <th scope="col" className="px-3 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200" style={{ width: '20%' }}>
-                      University
-                    </th>
-                    <th scope="col" className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"style={{ width: '20%' }} >
-                      Sector
-                    </th>
-                    <th scope="col" className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200" style={{ width: '20%' }}>
-                      Deadline
-                    </th>
-                    <th scope="col" className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200" style={{ width: '40%' }}>
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Map through universities data and render rows */}
-                  {universities.map((university, index) => (
-                    <tr key={index}>
-                      <td className="px-3 py-5 text-sm bg-white border-b border-gray-200">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0">
-                            <a href="#" className="relative block">
-                              <img alt="Logo" src={university.University_Image} className="mx-auto object-cover rounded-full h-10 w-10" />
-                            </a>
-                          </div>
-                          <div className="ml-3">
-                            <p className="text-gray-900 whitespace-no-wrap">{university['University Name']}</p>
-                          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full leading-normal">
+              <thead>
+                <tr>
+                  <th scope="col" className="px-5 py-3 text-sm font-bold text-left text-gray-800 uppercase bg-white border-b border-gray-200" style={{ width: '25%' }}>
+                    University
+                  </th>
+                  <th scope="col" className="px-5 py-3 text-sm font-bold text-left text-gray-800 uppercase bg-white border-b border-gray-200" style={{ width: '25%' }} >
+                    Sector
+                  </th>
+                  <th scope="col" className="px-5 py-3 text-sm font-bold text-left text-gray-800 uppercase bg-white border-b border-gray-200" style={{ width: '25%' }}>
+                    Deadline
+                  </th>
+                  <th scope="col" className="px-5 py-3 text-sm font-bold text-left text-gray-800 uppercase bg-white border-b border-gray-200" style={{ width: '25%' }}>
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* Map through universities data and render rows */}
+                {universities.map((university, index) => (
+                  <tr key={index}>
+                    <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <img alt="Logo" src={university.University_Image} className="h-10 w-10 object-cover rounded-full" />
                         </div>
-                      </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p className="text-gray-900 whitespace-no-wrap">{university.Sector}</p>
-                      </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p className="text-gray-900 whitespace-no-wrap">{"20 August, 2024"}</p>
-                      </td>
-                      <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
-                          <span aria-hidden="true" className="absolute inset-0 bg-green-200 rounded-full opacity-50"></span>
-                          <span className="relative">Open</span>
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              {/* Pagination buttons */}
-              <div className="flex justify-center mt-4">
-                <button type="button" className="w-8 h-8 p-1 mr-1 text-sm text-gray-600 bg-white border rounded-full hover:bg-gray-100" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>
-                  {'<'}
-                </button>
-                {Array.from({ length: totalPages }, (_, i) => (
-                  <button key={i + 1} type="button" className={`w-8 h-8 p-1 mx-1 text-sm ${currentPage === i + 1 ? 'text-indigo-500' : 'text-gray-600'} bg-white border rounded-full hover:bg-gray-100`} onClick={() => handlePageChange(i + 1)}>
-                    {i + 1}
-                  </button>
+                        <div className="ml-3">
+                          <p className="text-gray-900">{university['University Name']}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                      <p className="text-gray-900">{university.Sector}</p>
+                    </td>
+                    <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                      <p className="text-gray-900">20 August, 2024</p>
+                    </td>
+                    <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                      <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
+                        <span aria-hidden="true" className="absolute inset-0 bg-green-200 rounded-full opacity-50"></span>
+                        <span className="relative">Open</span>
+                      </span>
+                    </td>
+                  </tr>
                 ))}
-                <button type="button" className="w-8 h-8 p-1 ml-1 text-sm text-gray-600 bg-white border rounded-full hover:bg-gray-100" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>
-                  {'>'}
+              </tbody>
+            </table>
+            {/* Pagination buttons */}
+            <div className="flex justify-center mt-4">
+              <button type="button" className="w-8 h-8 p-1 mr-1 text-sm text-gray-600 bg-white border rounded-full hover:bg-gray-100" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>
+                {'<'}
+              </button>
+              {Array.from({ length: (endPage + 1) - startPage }, (_, i) => (
+                <button key={startPage + i} type="button" className={`w-8 h-8 p-1 mx-1 text-sm ${currentPage === startPage + i ? 'text-indigo-500' : 'text-gray-600'} bg-white border rounded-full hover:bg-gray-100`} onClick={() => handlePageChange(startPage + i)}>
+                  {startPage + i}
                 </button>
-              </div>
+              ))}
+              <button type="button" className="w-8 h-8 p-1 ml-1 text-sm text-gray-600 bg-white border rounded-full hover:bg-gray-100" disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>
+                {'>'}
+              </button>
             </div>
           </div>
         </div>

@@ -148,7 +148,7 @@ const Universities = () => {
     return (
         <div>
            <div className='flex flex-col items-left py-12 pb-8 pl-12'>
-        <h1 class="flex items-center text-5xl pb-8 pt-12 font-extrabold dark:text-indigo ">Explore<span class="bg-indigo-100 text-blue-800 text-2xl font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2">New</span></h1>
+          <h1 class="flex items-center text-5xl pb-8 pt-12 font-extrabold dark:text-indigo ">Explore<span class="bg-indigo-100 text-blue-800 text-2xl font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2">New</span></h1>
 
         
         <div className='row'>

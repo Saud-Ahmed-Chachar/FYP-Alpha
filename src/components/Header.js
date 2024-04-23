@@ -8,7 +8,7 @@ function Header() {
         <div className="overflow-y-hidden">
             {/* Code block starts */}
             <dh-component>
-            <nav className="w-full border-b">
+            <nav className="w-full border-b ">
     <div className="py-5 md:py-0 container mx-auto px-6 flex items-center justify-between">
         <div aria-label="Home. logo" role="img">
             <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" />
@@ -29,7 +29,7 @@ function Header() {
                         <line x1={6} y1={6} x2={18} y2={18} />
                     </svg>
                 </button>
-                <ul className="flex text-3xl md:text-base items-center py-10 md:flex flex-col md:flex-row justify-between md:justify-end fixed md:relative top-0 bottom-0 left-0 right-0 bg-white md:bg-transparent z-20">
+                <ul className="flex text-3xl md:text-base items-center py-8 md:flex flex-col md:flex-row justify-between md:justify-end fixed md:relative top-0 bottom-0 left-0 right-0 bg-white md:bg-transparent z-20">
                     <li className="text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0">
                         <a href="/" className="hover:underline">Home</a>
                     </li>

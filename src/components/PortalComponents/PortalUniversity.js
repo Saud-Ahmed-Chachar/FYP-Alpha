@@ -182,8 +182,17 @@ useEffect(() => {
   };
 
     return (
+      
         <div>
-                        
+            <div className="flex items-center justify-between rounded-lg py-4 px-6" style={{ 
+        background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)',
+        color: 'white',
+        boxSizing: 'border-box'
+      }}>
+        <div className="flex items-center">
+          <h1 className="text-2xl font-bold">Universities</h1>
+        </div>
+      </div>      
 
       {selectedProvince && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-8">

@@ -25,7 +25,15 @@ const PortalScholarship = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-center my-4 text-3xl font-bold">Scholarships For Undergraduate</h1>
+      <div className="flex items-center justify-between rounded-lg py-4 px-6" style={{ 
+        background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)',
+        color: 'white',
+        boxSizing: 'border-box'
+      }}>
+        <div className="flex items-center">
+          <h1 className="text-2xl font-bold">Scholarship for Undergraduate</h1>
+        </div>
+      </div>
       <div className="my-4 flex justify-center">
         <button 
           className={`text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ${selectedFilter === 'fullyFunded' ? 'bg-indigo-600 text-white' : ''}`}
