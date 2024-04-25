@@ -6,7 +6,7 @@ import BlogPosts from '../components/BlogPosts';
 import Recommendation from '../components/Recommendation';
 
 const HomePage = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   return (
     
     <div className="w-full">

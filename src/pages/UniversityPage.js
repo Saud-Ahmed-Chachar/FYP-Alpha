@@ -109,13 +109,14 @@ const UniversityPage = () => {
     };
 
     // Function to handle sector filter
-    const handleSectorFilter = (sector) => {
-        setSelectedSector(sector);
-        const filteredUniversities = universityData.filter(uni => uni.Sector === sector);
-        setUniversities(filteredUniversities);
-        setCurrentPage(1); // Reset pagination to first page
-        setShowAll(false); // Set showAll to false when a sector filter is applied
-    };
+    // Function to handle sector filter
+const handleSectorFilter = (sector) => {
+    setSelectedSector(sector);
+    const filteredUniversities = universityData.filter(uni => uni.Sector === sector);
+    setUniversities(filteredUniversities);
+    setCurrentPage(1); // Reset pagination to first page
+    setShowAll(false); // Set showAll to false when a sector filter is applied
+};
 
     // Function to handle "All" button click
     const handleShowAll = () => {
