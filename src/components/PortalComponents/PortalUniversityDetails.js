@@ -14,7 +14,6 @@ const PortalUniversityDetails = () => {
   const university = universityPortalData[id];
   //const university = universityPortalData.find(uni => uni.id === parseInt(id, 10));
   const [user] = useAuthState(auth);
-
   const applyNow = async () => {
     if (!user) {
       toast.error('Please log in to apply');
@@ -32,10 +31,13 @@ const PortalUniversityDetails = () => {
         userEmail: user.email,
         userName: user.displayName, // Assuming displayName is available
         appliedAt: new Date(),
+        status: 'Pending'  // Set the initial status to Pending
       });
       toast.success('Application submitted successfully!');
     }
   };
+  
+
   
   
   

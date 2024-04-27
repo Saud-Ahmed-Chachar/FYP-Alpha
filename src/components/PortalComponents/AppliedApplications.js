@@ -9,7 +9,22 @@ const universityUrls = [
     'www.comsats.edu.pk',
     'www.lums.edu.pk',
     'www.pu.edu.pk_',
-    'uaf.edu.pk'
+    'uaf.edu.pk',
+    'www.uet.edu.pk',
+    'www.uok.edu.pk',
+    'www.uos.edu.pk',
+    'www.uvas.edu.pk',
+    'www.vu.edu.pk',
+    'www.qau.edu.pk',
+    'www.aiou.edu.pk',
+    'www.pieas.edu.pk',
+    'www.nust.edu.pk',
+    'www.iiu.edu.pk',
+    'www.ustb.edu.pk',
+    'www.ustc.edu.pk',
+    'www.ust.edu.pk',
+    'www.ust.edu.pk'
+
 ];
 
 const fetchApplicants = async (userEmail) => {
@@ -31,22 +46,30 @@ const fetchApplicants = async (userEmail) => {
 const AppliedApplications = () => {
     const [applicants, setApplicants] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        setIsLoading(true);
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 setCurrentUser(user);
-                fetchApplicants(user.email).then(setApplicants);
+                const applicantsData = await fetchApplicants(user.email);
+                setApplicants(applicantsData);
             } else {
                 setApplicants([]);
             }
+            setIsLoading(false);
         });
 
         return () => unsubscribe();
     }, []);
 
-    const pendingApplicants = applicants.filter(app => !app.status);
-    const updatedApplicants = applicants.filter(app => app.status);
+    const pendingApplicants = applicants.filter(app => app.status === 'Pending');
+    const processedApplicants = applicants.filter(app => app.status === 'Accepted' || app.status === 'Rejected');
+
+    if (isLoading) {
+        return <div className="text-center py-10 text-lg font-semibold">Loading applications...</div>;
+    }
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,11 +78,11 @@ const AppliedApplications = () => {
             <ul className="list-disc pl-5">
                 {pendingApplicants.map(app => (
                     <li key={app.id} className="mt-1 text-gray-600">
-                        {app.universityUrl}: {app.rejectionReason || 'Pending review'}
+                        {app.universityUrl} - Pending
                     </li>
                 ))}
             </ul>
-            <h2 className="text-xl font-semibold text-gray-700 mt-5 mb-2">Application Status</h2>
+            <h2 className="text-xl font-semibold text-gray-700 mt-5 mb-2">Processed Applications</h2>
             <table className="min-w-full mt-2 bg-white shadow-md rounded-lg">
                 <thead>
                     <tr className="bg-gray-100">
@@ -71,16 +94,16 @@ const AppliedApplications = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {updatedApplicants.map(app => (
+                    {processedApplicants.map(app => (
                         <tr key={app.id}>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{app.universityUrl}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{app.userEmail}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {app.appliedAt.seconds ? new Date(app.appliedAt.seconds * 1000).toLocaleString() : 'N/A'}
+                                {app.appliedAt ? new Date(app.appliedAt.seconds * 1000).toLocaleString() : 'N/A'}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{app.status}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {app.rejectionReason || 'N/A'}
+                                {app.status === 'Rejected' ? app.rejectionReason : 'N/A'}
                             </td>
                         </tr>
                     ))}
