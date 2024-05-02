@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import universityData from '../assets/databases/universities_data.json';
-import SearchBar from '../components/SearchBar';
+import { debounce } from 'lodash'; // Import debounce function from lodash
+
 
 import { Fragment } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faSearch } from '@fortawesome/free-solid-svg-icons'; // Import the search icon from Font Awesome
 
 
 const sortOptions = [
@@ -51,6 +54,33 @@ const UniversityPage = () => {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
     const [sortOption, setSortOption] = useState(sortOptions[0].value); // Default sorting by Name
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const [loading, setLoading] = useState(false);
+  
+    
+
+    const handleChange = (event) => {
+      const { value } = event.target;
+      setSearchTerm(value);
+      const filteredUniversities = universityData.filter((uni) =>
+          uni['University Name'].toLowerCase().includes(value.toLowerCase())
+      );
+      setUniversities(filteredUniversities);
+  };
+  
+
+    const handleSelectSuggestion = (suggestion) => {
+        setSearchTerm(suggestion);
+        setSuggestions([]);
+        handleUniversitySelection(suggestion);
+    };
+
+    const handleUniversitySelection = (selectedUniversity) => {
+        // Redirect to the details page of the selected university
+        // You can use react-router-dom's history.push() or any other routing mechanism here
+        console.log(`Redirecting to details page of ${selectedUniversity}`);
+    };
     // Define pagination variables
     const itemsPerPage = 10;
     const totalPages = Math.ceil(universities.length / itemsPerPage);
@@ -167,7 +197,34 @@ if (!getPageNumbers) {
         <div className=" flex flex-col justify-between items-center p-8 lg:p-12">
           <div className="lg:w-1/3">
         {/* search bar */}
-              <SearchBar />
+        <label
+                    className="mx-auto relative bg-white border border-indigo-700 min-w-sm max-w-2xl flex flex-col md:flex-row items-center justify-center border py-2 px-2 rounded-2xl gap-2 shadow-2xl focus-within:border-gray-300"
+                    htmlFor="search-bar"
+                >
+                    <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-400" /> {/* Search Icon */}
+                    <input
+                        id="search-bar"
+                        placeholder="Search any university..."
+                        className="px-6 py-2 w-full rounded-md flex-1 outline-none bg-white"
+                        value={searchTerm}
+                        onChange={handleChange}
+                    />
+                    {/* Suggestions dropdown */}
+                    {suggestions.length > 0 && (
+                        <ul className="absolute top-full left-0 right-0 bg-white border rounded-md shadow-lg">
+                            {suggestions.map((suggestion, index) => (
+                                <li
+                                    key={index}
+                                    className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                                    onClick={() => handleSelectSuggestion(suggestion['University Name'])}
+                                >
+                                    {suggestion['University Name']}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </label>
+
           </div>
         
         </div>

@@ -61,10 +61,11 @@ const Gallery = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="my-4 p-4 text-3xl font-bold">Featured Universities</h1>
+      <h1 className="my-4 p-4 text-3xl font-bold">Open Admissions</h1>
       <div className="relative flex flex-wrap">
-        <div className="w-full md:w-2/4 p-4">
-          <div className="container" style={{ width: '100%', height: '70vh' }}>
+        {/* Image Section */}
+        <div className="w-full md:w-2/4 ">
+          <div className="container" style={{ width: '100%' }}>
             <div className="relative flex flex-col w-full max-h-full aspect-[4/3]">
               <SfScrollable
                 className="w-full h-full snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
@@ -92,38 +93,23 @@ const Gallery = () => {
                   <SfButton className="absolute disabled:hidden !rounded-full z-10 right-4 bg-white" variant="secondary" size="sm" square={true} slotPrefix={<SfIconChevronRight size="sm" />} />
                 }
               >
-                {/* {ads.map(({ image, university }, index) => (
-                  <button
-                    type="button"
-                    aria-label={university}
-                    aria-current={activeIndex === index}
-                    key={`${university}-${index}-thumbnail`}
-                    className={classNames(
-                      'md:w-14 md:h-auto relative shrink-0 pb-1 my-2 -mr-2 border-b-4 snap-start cursor-pointer focus-visible:outline focus-visible:outline-offset transition-colors flex-grow md:flex-grow-0',
-                      activeIndex === index ? 'border-primary-700' : 'border-transparent'
-                    )}
-                    onClick={() => setActiveIndex(index)}
-                    onKeyDown={(event) => activeArrowNavigation(event, index)}
-                  >
-                    <img alt={university} className="object-contain border border-neutral-200" width="30" height="30" src={image} />
-                  </button>
-                ))} */}
               </SfScrollable>
             </div>
           </div>
         </div>
+        {/* Info Section */}
         <div className="w-full md:w-2/4 p-4">
-          <div className="container mx-auto absolute bottom-0 bg-gray-800 bg-opacity-70 rounded-lg p-4">
+          <div className="container mx-auto bottom-0  bg-opacity-70 rounded-lg p-4">
             {ads[activeIndex] && (
               <>
-                <h1 className='text-sm font-bold mb-2 text-white'>{ads[activeIndex].university}</h1>
-                <p className="text-xs mb-1 text-white">{ads[activeIndex].admission_info}</p>
-                <p className="text-xs mb-1 text-white">
+                <h1 className='text-sm font-bold mb-2 '>{ads[activeIndex].university}</h1>
+                <p className="text-xs mb-1 ">{ads[activeIndex].admission_info}</p>
+                <p className="text-xs mb-1 ">
                   <span className="font-bold">Deadline:</span> {ads[activeIndex].deadline}
                 </p>
-                <p className="text-xs mb-1 text-white">
+                <p className="text-xs mb-1 ">
                   <span className="font-bold">Visit Link:</span>{' '}
-                  <a href={ads[activeIndex].visit_link} target="_blank" rel="noopener noreferrer" className="text-indigo-200">
+                  <a href={ads[activeIndex].visit_link} target="_blank" rel="noopener noreferrer" className="text-indigo-700">
                     {ads[activeIndex].visit_link}
                   </a>
                 </p>
