@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import universityData from '../assets/databases/universities_data.json';
-import { debounce } from 'lodash'; // Import debounce function from lodash
 
 
 import { Fragment } from 'react'
-import { Dialog, Menu, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, FunnelIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
 import { faSearch } from '@fortawesome/free-solid-svg-icons'; // Import the search icon from Font Awesome
 
@@ -18,29 +16,7 @@ const sortOptions = [
   { name: 'Excellence Rank', value: 'Excellence Rank' },
 ];
 
-const filters = [
-  {
-    id: 'sector',
-    name: 'Sector',
-    options: [
-      { value: 'Public', label: 'Public', checked: false },
-      { value: 'Private', label: 'Private', checked: false },
-      
-    ],
-  },
-  {
-    id: 'program',
-    name: 'Program',
-    options: [
-      { value: 'Medical', label: 'Medical', checked: false },
-      { value: 'Engineering', label: 'Engineering', checked: false },
-      { value: 'Art', label: 'Art', checked: false },
-      { value: 'Science', label: 'Science', checked: false },
-      { value: 'Business', label: 'Business', checked: false },
-      { value: 'Others', label: 'Others', checked: false },
-    ],
-  },
-]
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -53,12 +29,33 @@ const UniversityPage = () => {
     const [showAll, setShowAll] = useState(true);
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
     const [sortOption, setSortOption] = useState(sortOptions[0].value); // Default sorting by Name
-
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(false);
   
     
+    // Define the array of department names
+  const departments = ["Computer", "Engineering", "Medicine", "Commerce"];
+  // State to hold the selected department
+  const [selectedDepartment, setSelectedDepartment] = useState('');
+
+  // Function to handle department filter
+  const handleDepartmentFilter = (selectedValue) => {
+    // Do something with the selected department
+    console.log('Selected department:', selectedValue);
+    setSelectedDepartment(selectedValue);
+
+    // Filter universities based on whether their department array includes the selected department
+    const filteredUniversities = universityData.filter(uni =>
+        uni.departments && uni.departments.includes(selectedValue)
+    );
+
+    // Set the filtered universities
+    setUniversities(filteredUniversities);
+    // You can perform further actions here, like resetting pagination or handling other state updates
+};
+
+
 
     const handleChange = (event) => {
       const { value } = event.target;
@@ -82,18 +79,13 @@ const UniversityPage = () => {
         console.log(`Redirecting to details page of ${selectedUniversity}`);
     };
     // Define pagination variables
-    const itemsPerPage = 10;
+    const itemsPerPage = 12;
     const totalPages = Math.ceil(universities.length / itemsPerPage);
 
     // State for current page
     const [currentPage, setCurrentPage] = useState(1);
 
     // Function to paginate universities array
-    const paginate = (pageNumber) => {
-        const startIndex = (pageNumber - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        return universities.slice(startIndex, endIndex);
-    };
 
     // Function to handle page change
     const handlePageChange = (pageNumber) => {
@@ -171,7 +163,6 @@ const handleSectorFilter = (sector) => {
       }
       return 0;
   });
-    const filteredUniversities = showAll ? universities : universityData;
 
     // Function to paginate sorted universities array
 const paginateSorted = (pageNumber) => {
@@ -182,12 +173,6 @@ const paginateSorted = (pageNumber) => {
 
 // Function to generate array of page numbers to display
 if (!getPageNumbers) {
-  const getPageNumbers = () => {
-    const maxPagesToShow = 5; // Change this value to adjust the maximum number of page links to show
-    const startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
-    const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
-    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-  };
 }
     return (
         <div>
@@ -230,97 +215,10 @@ if (!getPageNumbers) {
         </div>
         <div className="bg-white">
       <div>
-        {/* Mobile filter dialog */}
-        <Transition.Root show={mobileFiltersOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-40 lg:hidden" onClose={setMobileFiltersOpen}>
-            <Transition.Child
-              as={Fragment}
-              enter="transition-opacity ease-linear duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity ease-linear duration-300"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-black bg-opacity-25" />
-            </Transition.Child>
-
-            <div className="fixed inset-0 z-40 flex">
-              <Transition.Child
-                as={Fragment}
-                enter="transition ease-in-out duration-300 transform"
-                enterFrom="translate-x-full"
-                enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-x-0"
-                leaveTo="translate-x-full"
-              >
-                <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
-                  <div className="flex items-center justify-between px-4">
-                    <h2 className="text-lg font-medium text-gray-900">Filters</h2>
-                    <button
-                      type="button"
-                      className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
-                      onClick={() => setMobileFiltersOpen(false)}
-                    >
-                      <span className="sr-only">Close menu</span>
-                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                  </div>
-
-                  {/* Filters */}
-                  <form className="mt-4 border-t border-gray-200">
-                    
-
-                    {filters.map((section) => (
-                      <div key={section.id} className="border-t border-gray-200 px-4 py-6">
-                        <>
-                          <h3 className="-mx-2 -my-3 flow-root">
-                            <button
-                              className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
-                              onClick={() => {}}
-                            >
-                              <span className="font-medium text-gray-900">{section.name}</span>
-                              <span className="ml-6 flex items-center">
-                                <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                              </span>
-                            </button>
-                          </h3>
-                          <div className="pt-6">
-                            <div className="space-y-6">
-                              {section.options.map((option, optionIdx) => (
-                                <div key={option.value} className="flex items-center">
-                                  <input
-                                    id={`filter-mobile-${section.id}-${optionIdx}`}
-                                    name={`${section.id}[]`}
-                                    defaultValue={option.value}
-                                    type="checkbox"
-                                    defaultChecked={option.checked}
-                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                  />
-                                  <label
-                                    htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                    className="ml-3 min-w-0 flex-1 text-gray-500"
-                                  >
-                                    {option.label}
-                                  </label>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </>
-                      </div>
-                    ))}
-                  </form>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </Dialog>
-        </Transition.Root>
+       
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
-            {/* <h1 className="text-4xl font-bold tracking-tight text-gray-900">Universities</h1> */}
             <div className='Province flex flex-wrap justify-center lg:justify-start gap-1 mt-4 lg:mt-0flex flex-wrap justify-center lg:justify-start gap-2 mt-4 lg:mt-0 w-full lg:w-2/3'>
             <button type="button" className={"text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" }
             onClick={handleShowAll}>
@@ -351,6 +249,36 @@ if (!getPageNumbers) {
             onClick={()=>handleProvinceFilter("Balochistan")}>
               Balochistan
             </button>
+
+            <div className="Province flex flex-wrap justify-center lg:justify-start gap-1 mt-4 lg:mt-0flex flex-wrap justify-center lg:justify-start gap-2 mt-4 lg:mt-0 w-full lg:w-2/3">
+    {/* Sector filter */}
+    <select
+        className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+        onChange={(e) => handleSectorFilter(e.target.value)}
+    >
+        <option value="Public">Public</option>
+        <option value="Private">Private</option>
+    </select>
+
+    {/* Department dropdown */}
+    <select
+        className="text-blue-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-500 dark:focus:ring-green-800"
+        value={selectedDepartment}
+        onChange={(e) => handleDepartmentFilter(e.target.value)}
+    >
+        <option value="">Select Department</option>
+        {departments.map((department, index) => (
+            <option key={index} value={department}>
+                {department}
+            </option>
+        ))}
+    </select>
+
+    {/* Other filters or buttons */}
+</div>
+
+    
+
             
         </div>
             <div className="flex items-center">
@@ -395,18 +323,8 @@ if (!getPageNumbers) {
                                   </Transition>
                               </Menu>
 
-              <button type="button" className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
-                <span className="sr-only">View grid</span>
-                <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
-                onClick={() => setMobileFiltersOpen(true)}
-              >
-                <span className="sr-only">Filters</span>
-                <FunnelIcon className="h-5 w-5" aria-hidden="true" />
-              </button>
+             
+              
             </div>
           </div>
 
@@ -415,73 +333,31 @@ if (!getPageNumbers) {
               Products
             </h2>
 
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+            <div className="grid ">
               {/* Filters */}
-              <form className="hidden lg:block">
-                
-
-              {filters.map((section) => (
-  <div key={section.id} className="border-t border-gray-200 px-4 py-6">
-    <>
-      <h3 className="-mx-2 -my-3 flow-root">
-        <button
-          className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500"
-          onClick={() => {}}
-        >
-          <span className="font-medium text-gray-900">{section.name}</span>
-          <span className="ml-6 flex items-center">
-            <PlusIcon className="h-5 w-5" aria-hidden="true" />
-          </span>
-        </button>
-      </h3>
-      <div className="pt-6">
-        <div className="space-y-6">
-          {section.options.map((option, optionIdx) => (
-            <div key={option.value} className="flex items-center">
-              <input
-                id={`filter-mobile-${section.id}-${optionIdx}`}
-                name={`${section.id}[]`}
-                defaultValue={option.value}
-                type="checkbox"
-                defaultChecked={option.checked}
-                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <label
-                htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                className="ml-3 min-w-0 flex-1 text-gray-500"
-              >
-                {option.label}
-              </label>
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
-  </div>
-))}
-
-              </form>
+              
 
               {/* Product grid */}
-              <div className="lg:col-span-3">
+              <div className="">
                 {/* University cards */}
                 <div className="flex flex-col items-center pl-8">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-8">
     {paginateSorted(currentPage).map((uni, index) => (
-            <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden flex">
-                <img className="h-48 w-48 object-cover object-center" src={uni.Image} alt={uni['University Name']} />
-                <div className="p-6">
-                    <h3 className="text-xl font-semibold">{uni['University Name']}</h3>
-                    <p>Ranking: {uni.ranking}</p>
-                    <p>World Rank: {uni['World Rank']}</p>
-                    <p>Excellence Rank: {uni['Excellence Rank']}</p>
-                    <p>Specialization: {uni.Specialization}</p>
-                    <p>Sector: {uni.Sector}</p>
-                    <a href={`/UniversityDetailsPage/${index}`} className="text-blue-500 mt-2 inline-block">View Details</a>
-                </div>
+        <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden flex">
+            <img className="h-48 w-48 object-cover object-center sm:h-40 sm:w-40" src={uni.Image} alt={uni['University Name']} />
+            <div className="p-6">
+                <h3 className="text-xl font-semibold">{uni['University Name']}</h3>
+                <p>Ranking: {uni.ranking}</p>
+                <p>World Rank: {uni['World Rank']}</p>
+                <p>Excellence Rank: {uni['Excellence Rank']}</p>
+                <p>City: {uni["City"]}</p>
+                <p>Sector: {uni.Sector}</p>
+                <a href={`/UniversityDetailsPage/${index}`} className="text-blue-500 mt-2 inline-block">View Details</a>
             </div>
-        ))}
-    </div>
+        </div>
+    ))}
+</div>
+
 
       <nav aria-label="Page navigation example" className="mt-8">
         <ul className="list-none flex">
