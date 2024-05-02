@@ -16,8 +16,11 @@ const Recommendation = ({ setShowModal }) => {
   });
   
   const [matchingUniversities, setMatchingUniversities] = useState([]);
+
   const [showResultModal, setShowResultModal] = useState(false);
+  
   const [citiesForProvince, setCitiesForProvince] = useState({});
+  
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -63,22 +66,35 @@ const Recommendation = ({ setShowModal }) => {
   }, [program, city, department, sector]);
 
   const filterUniversities = () => {
-    // Filter university data based on selected fields
-    const filteredUniversities = universityData.filter(university => {
-      // Compare each field with the selected value, ignore if the field is empty
-      console.log(university)
+    let filteredUniversities = universityData.filter(university => {
+      // Compare other fields first
       return (
         (program === '' || university.Province === program) &&
         (city === '' || university.City === city) &&
-        (department.length === 0 || 
-          (Array.isArray(university.departments) && 
-            university.departments.some(program => department.includes(program)))
-        ) &&
         (sector === '' || university.Sector === sector)
       );
     });
+  
+    if (step === 3 && department.trim() !== '') {
+      filteredUniversities = filteredUniversities.filter(university => {
+        if (university.departments && Array.isArray(university.departments)) {
+          // Check if any of the selected departments are offered by the university
+          return department.split(',').some(selectedDept => university.departments.includes(selectedDept.trim()));
+        } else if (university.departments && typeof university.departments === 'string') {
+          // If departments is a single program, compare directly
+          return university.departments === department;
+        }
+        return false; // Exclude the university if no departments are available
+      });
+    }
+  
     setMatchingUniversities(filteredUniversities);
+    console.log(filteredUniversities);
   };
+  
+  
+
+   
 
   const handleNext = () => {
     if (step === 1) {
@@ -122,10 +138,20 @@ const Recommendation = ({ setShowModal }) => {
       });
       filterUniversities(); // Filter universities before displaying them
       setStep(step + 1);
-    } else {
+    
+    } 
+    
+    else if(step === 5) {
       setShowResultModal(true);
+      setStep(step + 1);
     }
+    else{
+ closeModal();
+    }
+   
+   
   };
+
 
   const handleBack = () => {
     if (step > 1) {
