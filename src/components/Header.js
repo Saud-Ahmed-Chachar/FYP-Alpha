@@ -1,19 +1,29 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import indigoLogo from "../assets/icons/logo_192.png";
 
 function Header() {
     const [show, setShow] = useState(false);
 
     return (
         <div className="overflow-y-hidden">
+             
             {/* Code block starts */}
             <dh-component>
             <nav className="w-full border-b ">
+                
     <div className="py-5 md:py-0 container mx-auto px-6 flex items-center justify-between">
         <div aria-label="Home. logo" role="img">
-            <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" />
+            {/* <img className="w-12 md:w-auto" src="../assets/icons/logo192.png" alt="logo" /> */}
+            <img
+className="w-12 h-12 md:w-16 md:h-16 rounded-full"
+  src={indigoLogo}
+  alt="logo"
+  loading="lazy"
+/>
         </div>
         <div className="flex items-center">
+
             <button onClick={() => setShow(!show)} className={`${show ? 'hidden' : ''} sm:block md:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500`}>
                 <svg aria-haspopup="true" aria-label="open Main Menu" xmlns="http://www.w3.org/2000/svg" className="md:hidden icon icon-tabler icon-tabler-menu" width={24} height={24} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round">
                     <path stroke="none" d="M0 0h24v24H0z" />

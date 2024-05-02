@@ -39,7 +39,7 @@ const SignUpForm = () => {
   return (
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto w-full">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-sky-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
         <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 w-full">
           <div className="max-w-md mx-auto">
             <div>
@@ -71,7 +71,7 @@ const SignUpForm = () => {
                 </div>
 
                 <div className="relative flex justify-center">
-                  <button type="submit" className="bg-cyan-500 text-white rounded-md px-4 py-2">Create Account</button>
+                  <button type="submit" className="bg-indigo-500 text-white rounded-md px-4 py-2">Create Account</button>
                 </div>
                 {successMessage && <p className="text-green-500">{successMessage}</p>} {/* Display success message */}
               </div>
@@ -80,7 +80,7 @@ const SignUpForm = () => {
           <div className="mt-4 text-center">
             <p className="text-sm font-light text-gray-600">
               Already have an account? 
-              <a href="/login" className="font-medium text-cyan-600 hover:underline">Login</a>
+              <a href="/login" className="font-medium text-indigo-600 hover:underline">Login</a>
             </p>
           </div>
         </div>
