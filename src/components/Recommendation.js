@@ -3,16 +3,18 @@ import universityData from './universities_data.json';
 
 const Recommendation = ({ setShowModal }) => {
   const [step, setStep] = useState(1);
-  const [fieldOfStudy, setFieldOfStudy] = useState('');
-  const [areaOfInterest, setAreaOfInterest] = useState('');
-  const [programsOrMajors, setProgramsOrMajors] = useState('');
+  const [program, setProgram] = useState('');
+  const [city, setCity] = useState('');
+  const [department, setDepartment] = useState('');
   const [sector, setSector] = useState('');
+
   const [modalContent, setModalContent] = useState({
     title: 'Recommendation',
     description: 'What specific province do you want to study?',
     placeholder: 'Select the Province',
     buttonText: 'Next'
   });
+  
   const [matchingUniversities, setMatchingUniversities] = useState([]);
   const [showResultModal, setShowResultModal] = useState(false);
   const [citiesForProvince, setCitiesForProvince] = useState({});
@@ -58,20 +60,21 @@ const Recommendation = ({ setShowModal }) => {
   useEffect(() => {
     // Filter universities whenever any dropdown value changes
     filterUniversities();
-  }, [fieldOfStudy, areaOfInterest, programsOrMajors, sector]);
+  }, [program, city, department, sector]);
 
   const filterUniversities = () => {
     // Filter university data based on selected fields
     const filteredUniversities = universityData.filter(university => {
       // Compare each field with the selected value, ignore if the field is empty
+      console.log(university)
       return (
-        (fieldOfStudy === '' || university.Province === fieldOfStudy) &&
-        (areaOfInterest === '' || university.City === areaOfInterest) &&
-        (programsOrMajors.length === 0 || 
+        (program === '' || university.Province === program) &&
+        (city === '' || university.City === city) &&
+        (department.length === 0 || 
           (Array.isArray(university.departments) && 
-            university.departments.some(program => programsOrMajors.includes(program)))
+            university.departments.some(program => department.includes(program)))
         ) &&
-                (sector === '' || university.Sector === sector)
+        (sector === '' || university.Sector === sector)
       );
     });
     setMatchingUniversities(filteredUniversities);
@@ -79,33 +82,33 @@ const Recommendation = ({ setShowModal }) => {
 
   const handleNext = () => {
     if (step === 1) {
-      setFieldOfStudy(modalContent.inputValue);
+      setProgram(modalContent.inputValue);
       setModalContent({
         title: 'Location Preferences',
         description: 'Do you have any preferences regarding the location of the university?',
         placeholder: 'Enter your location preferences',
         buttonText: 'Next',
-        inputValue: '' // Reset the inputValue after setting fieldOfStudy
+        inputValue: '' 
       });
       setStep(step + 1);
     } else if (step === 2) {
-      setAreaOfInterest(modalContent.inputValue);
+      setCity(modalContent.inputValue);
       setModalContent({
         title: 'Programs or Majors',
         description: 'Are there any specific programs or majors you\'re interested in?',
         placeholder: 'Enter your programs or majors of interest',
         buttonText: 'Next',
-        inputValue: '' // Reset the inputValue after setting areaOfInterest
+        inputValue: '' // Reset the inputValue after setting city
       });
       setStep(step + 1);
     } else if (step === 3) {
-      setProgramsOrMajors(modalContent.inputValue);
+      setDepartment(modalContent.inputValue);
       setModalContent({
         title: 'Sector',
         description: 'Do you have any preferences regarding sector?',
         placeholder: 'Select the Sector',
         buttonText: 'Next',
-        inputValue: '' // Reset the inputValue after setting programsOrMajors
+        inputValue: '' // Reset the inputValue after setting department
       });
       setStep(step + 1);
     } else if (step === 4) {
@@ -138,8 +141,8 @@ const Recommendation = ({ setShowModal }) => {
       } else if (step === 3) {
         setModalContent({
           title: 'Specific Area of Interest',
-          description: `What specific area within ${fieldOfStudy} interests you the most?`,
-          placeholder: `Enter your area of interest in ${fieldOfStudy}`,
+          description: `What specific area within  interests you the most?`,
+          placeholder: `Enter your area of interest in `,
           buttonText: 'Next'
         });
       } else if (step === 4) {
@@ -200,7 +203,7 @@ const Recommendation = ({ setShowModal }) => {
                     onChange={handleInputChange}
                   >
                     <option value="">Select City</option>
-                    {citiesForProvince[fieldOfStudy] && citiesForProvince[fieldOfStudy].map(city => (
+                    {citiesForProvince[program] && citiesForProvince[program].map(city => (
                       <option key={city} value={city}>{city}</option>
                     ))}
                   </select>
@@ -240,7 +243,7 @@ const Recommendation = ({ setShowModal }) => {
                     <option value="">Select Sector</option>
                     <option value="Public">Public</option>
                     <option value="Private">Private</option>
-                    <option value="Both">Both</option>
+                    
                   </select>
                 </div>
               )}
