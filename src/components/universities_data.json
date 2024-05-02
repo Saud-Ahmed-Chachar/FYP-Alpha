@@ -37,11 +37,7 @@
     "Specialization": "General",
     "University_URL":"http://www.pu.edu.pk/",
     "Image": "https://th.bing.com/th/id/R.cdc3a81c416b8be1cdf4dccc1d77064a?rik=GcZbaUnitkpGHw&riu=http%3a%2f%2fkitaab.com.pk%2fwp-content%2fuploads%2f2015%2f08%2fPunjab_University_Logo_without_background.svg_.png&ehk=bk81Kt%2bNjeb4ScPo2%2fE4zg78TJ%2f9QvtlrmxVewLfnUU%3d&risl=&pid=ImgRaw&r=0",
-<<<<<<< HEAD
-    "University_Image":"https://th.bing.com/th/id/R.488b2f2ae722d1cbaa0d82cc49a13dcb?rik=6B0yhoPD0Qf9Rw&pid=ImgRaw&r=0",
-=======
     "University_Image":"https://www.pu.edu.pk/images/logopu.png",
->>>>>>> origin/main
     "about": "Quaid-i-Azam University, commonly referred to as QAU, is a public research university in Islamabad, Pakistan. Founded as the University of Islamabad in 1967, it was initially dedicated to the study of postgraduate education but later expanded to an interdisciplinary university offering undergraduate and postgraduate education1. As of 2015, QAU has grown into the largest university in Islamabad with a total enrollment exceeding 13,000 students.",
     "mission": "The mission of the University of Punjab is to provide quality education to ensure that their graduates are nurtured to be sensitive, tolerant, humane, and carry wisdom of knowledge, creative thinking and research skills for their holistic development.",
     "vision": "The vision of the University of Punjab is to develop scientific, socio-cultural, economic and political leadership, through learner-centered teaching and research among the graduates in order to promote national cohesion and stability through providing quality education at par with international standards.",
@@ -113,7 +109,7 @@
     "about": "The University of Agriculture, Faisalabad (UAF) is a public research university in Faisalabad, Pakistan. It was established in 1906 as the first major institution of higher agricultural education in the undivided Punjab.",
     "mission": "The university`s aims are to support the development of Pakistan as a prosperous and resilient nation whose future food-security is assured; to promote lifelong learning; to champion agrarian reforms; to encourage sustainable farming and food systems; and to extend knowledge to the local community via outreach initiatives.",
     "vision": "In the 21st century, UAF will push across the frontiers of knowledge to create, in service to the public, unique interdisciplinary programs of teaching, research, and outreach essential for agricultural and rural development. UAF will become an exemplar of a university that prepares citizens as a workforce and for leadership in a diverse, global, and technology-driven environment.",
-    "departments":["   Agronomy", "  Plant Breeding & Genetics","  Entomology", "  Plant Pathology",  "  Forestry & Range Management"]
+    "departments":["Agronomy", "Plant Breeding & Genetics","Entomology", "Plant Pathology",  "Forestry & Range Management"]
   },
   {
     "ranking": 6,
@@ -7076,7 +7072,7 @@
     "Recognised University": "Yes",
     "Specialization": "General",
     "University_URL":"https://pakaims.edu.pk/",
-    "Image":"https://th.bing.com/th/id/OIP.yp-09NDVdiUZjjQdSco8jAHaHa?w=500&h=500&rs=1&pid=ImgDetMain",
+    "Image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmosFJooI4inCEp5WVbESW0vIOFTuowVrIJ3xjP_8DyA&s",
     "University_Image":"https://th.bing.com/th/id/OIP.aE5fIS6h_hcJADEaa3p5sQAAAA?rs=1&pid=ImgDetMain",
     "about":"AIMS Institute of Management Sciences Multan Punjab is a premier business school located in Multan, Punjab. Established in 2009, the institute is committed to providing quality education in management and related fields, with a focus on practical applications, leadership development, and entrepreneurship. With a team of dedicated faculty members, AIMS offers various undergraduate and postgraduate programs, including BBA, MBA, and Ph.D. in Management Sciences.",
     "mission":"The mission of AIMS is to provide quality management education to students from diverse backgrounds, cultivate their skills, and help them become future leaders with a strong ethical and moral foundation. ",

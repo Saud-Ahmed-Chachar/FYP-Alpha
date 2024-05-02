@@ -61,8 +61,8 @@ function Header() {
             </Link>
 
             <Link to="/signup">
-    <button className={"ml-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-transparent transition duration-150 ease-in-out hover:border-indigo-600 lg:text-lg lg:font-bold hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-4 sm:px-5 py-2 sm:py-2 text-sm " + (show ? 'hidden md:block sm:block' : 'hidden lg:block')}>Register</button>
-</Link>
+                <button className={"ml-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-transparent transition duration-150 ease-in-out hover:border-indigo-600 lg:text-lg lg:font-bold hover:text-indigo-600 rounded border border-indigo-700 text-indigo-700 px-4 sm:px-5 py-2 sm:py-2 text-sm " + (show ? 'hidden md:block sm:block' : 'hidden lg:block')}>Register</button>
+            </Link>
 
         </div>
     </div>

@@ -120,19 +120,19 @@ export default function App() {
               Useful links
             </h6>
             <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200"
+              <a href="/universities" className="text-neutral-600 dark:text-neutral-200"
               >Universities</a>
             </p>
             <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200"
+              <a href="/scholarships" className="text-neutral-600 dark:text-neutral-200"
               >Scholarships</a>
             </p>
             <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200"
+              <a  href="/admission" className="text-neutral-600 dark:text-neutral-200"
               >Admissions</a>
             </p>
             <p>
-              <a className="text-neutral-600 dark:text-neutral-200"
+              <a href="/about" className="text-neutral-600 dark:text-neutral-200"
               >Help</a>
             </p>
           </div>

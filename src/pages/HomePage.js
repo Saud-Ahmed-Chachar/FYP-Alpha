@@ -2,7 +2,6 @@ import {React, useState} from 'react';
 import UniCards from '../components/UniCards';
 import ScholarshipCards from '../components/ScholarshipCards';
 import Gallery from '../components/Gallery';
-import BlogPosts from '../components/BlogPosts';
 import Recommendation from '../components/Recommendation';
 
 const HomePage = () => {
@@ -37,8 +36,7 @@ const HomePage = () => {
             
                 <UniCards/>
                 <ScholarshipCards/>
-                {/* <BlogPosts/>   */}
-
+                
       
     </div>
   );
