@@ -10,7 +10,8 @@ const ScholarshipCards = () => {
 
     return (
         <div className="p-4 overflow-y-hidden">
-            <h1 className="my-4 p-4 text-3xl font-bold">Featured Scholarships</h1>
+             <div className="text-xs  text-gray-100 uppercase dark:bg-indigo-500"  style={{ background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)', color: 'white', boxSizing: 'border-box' }}> <h1 className="my-4 p-4 text-3xl font-bold">Featured Scholarships</h1></div>
+           
             <div className="overflow-x-auto overflow-y-hidden">
                 <div className="flex flex-nowrap">
                     {scholarships.map((scholarship, index) => (

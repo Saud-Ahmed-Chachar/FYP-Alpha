@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from 'react-router-dom';
 import profile from "../assets/images/profile.jpg";
+import indigoLogo from "../assets/icons/logo_192.png";
 import {
   HiArrowSmRight,
   HiHome,
@@ -125,7 +126,12 @@ function PortalSideBar() {
             <div className="flex items-center">
               <div className="mr-4">
                 {/* Your logo component or image */}
-                <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" />
+                <img
+className="w-12 h-12 md:w-16 md:h-16 rounded-full"
+  src={indigoLogo}
+  alt="logo"
+  loading="lazy"
+/>
               </div>
               <h1 className="text-lg font-semibold text-gray-800">University Recommendation</h1>
             </div>

@@ -61,7 +61,8 @@ const Gallery = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="my-4 p-4 text-3xl font-bold">Open Admissions</h1>
+       <div className="text-xs  text-gray-100 uppercase dark:bg-indigo-500"  style={{ background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)', color: 'white', boxSizing: 'border-box' }}> <h1 className="my-4 p-4 text-3xl font-bold">Open Admissions</h1></div>
+     
       <div className="relative flex flex-wrap">
         {/* Image Section */}
         <div className="w-full md:w-2/4 ">

@@ -3,7 +3,7 @@ import React from 'react';
 export default function App() {
   return (
     <footer
-      className="bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+      className="bg-indigo-700 text-center text-neutral-600 dark:bg-indigo-900 dark:text-neutral-200 lg:text-left"style={{ background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)', color: 'white', boxSizing: 'border-box' }}>
       <div
         className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
         <div className="mr-12 hidden lg:block">
@@ -199,7 +199,7 @@ export default function App() {
       </div>
 
       {/* <!--Copyright section--> */}
-      <div className="bg-neutral-200 p-6 text-center dark:bg-neutral-700">
+      <div className="bg-neutral-200 p-6 text-center dark:bg-indigo-900" style={{ background: 'linear-gradient(to right, rgb(36, 18, 101) 0%, rgb(0, 130, 203) 100%)', color: 'white', boxSizing: 'border-box' }}>
         <span>© 2023 Copyright:</span>
         <a
           className="font-semibold text-neutral-600 dark:text-neutral-400"
