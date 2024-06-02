@@ -6,6 +6,9 @@ import Recommendation from '../components/Recommendation';
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
+  const handleLiveDemoClick = () => {
+    window.open('https://www.canva.com/design/DAGHA1mh8EQ/5O9HCqQtlk6fZje9lPjCqA/edit?utm_content=DAGHA1mh8EQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton', '_blank');
+  };
   return (
     <div className="w-full">
       <div className="pb-16 relative bg-cover bg-center" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)' }}>
@@ -22,7 +25,13 @@ const HomePage = () => {
           </div>
           <div className="flex justify-center items-center pb-16 pt-16">
             <button onClick={() => setShowModal(true)} className="ml-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white-700 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 lg:text-xl lg:font-bold rounded text-white px-2 sm:px-5 border border-indigo-700 py-1 sm:py-2 text-sm">Get Started</button>
-            <button className="ml-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white-700 bg-white text-indigo-700 transition duration-150 ease-in-out hover:border-indigo-600 lg:text-xl lg:font-bold hover:text-indigo-600 rounded border border-white-700 px-2 sm:px-5 py-1 sm:py-2 text-sm">Live Demo</button>
+        <button
+      className="ml-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white-700 bg-white text-indigo-700 transition duration-150 ease-in-out hover:border-indigo-600 lg:text-xl lg:font-bold hover:text-indigo-600 rounded border border-white-700 px-2 sm:px-5 py-1 sm:py-2 text-sm"
+      onClick={handleLiveDemoClick}
+    >
+      Live Demo
+    </button>
+
           </div>
         </div>
       </div>
