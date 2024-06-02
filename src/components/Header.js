@@ -40,19 +40,19 @@ className="w-12 h-12 md:w-16 md:h-16 rounded-full"
                     </svg>
                 </button>
                 <ul className="flex text-3xl md:text-base items-center py-8 md:flex flex-col md:flex-row justify-between md:justify-end fixed md:relative top-0 bottom-0 left-0 right-0 bg-white md:bg-transparent z-20">
-                    <li className="text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0">
+                    <li className="text-indigo-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0">
                         <a href="/" className="hover:underline">Home</a>
                     </li>
-                    <li className="text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
+                    <li className="text-indigo-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                         <a href="/universities" className="hover:underline">Universities</a>
                     </li>
-                    <li className="text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
+                    <li className="text-indigo-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                         <a href="/admission" className="hover:underline">Admission</a>
                     </li>
-                    <li className="text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
+                    <li className="text-indigo-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                         <a href="/scholarships" className="hover:underline">Scholarships</a>
                     </li>
-                    <li className="text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
+                    <li className="text-indigo-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                         <a href="/about" className="hover:underline">About Us</a>
                     </li>
                     <li className={`text-gray-700 hover:text-indigo-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10 ${show ? 'md:hidden lg:hidden' : 'hidden'}`}>
